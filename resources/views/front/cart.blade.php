@@ -1,0 +1,115 @@
+@extends('front.layout')
+@section('content')
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Cart</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="{{ route('index')}}">Home</a></li>
+							<li class="active">Cart</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+		@if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger alert-dismissible">
+        <i class="fa fa-check-circle"></i>
+        <strong>{{ $error }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+            @endforeach
+@endif
+
+@if (session()->has('Add'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+    <i class="fa fa-check-circle"></i>
+    <strong>{{ session()->get('Add') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session()->has('delete'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+    <i class="fa fa-check-circle"></i>
+        <strong>{{ session()->get('delete') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session()->has('edit'))
+    <div class="alert alert-warning alert-dismissible" role="alert">
+    <i class="fa fa-check-circle"></i>
+        <strong>{{ session()->get('edit') }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>				
+@endif
+                @php
+				$cart_array = cardArray()
+				@endphp
+				<div class="wrap-iten-in-cart">
+				@if( count($cart_array)  > 0)
+					<h3 class="box-title">Products Name</h3>
+					@foreach ($cart_array as $add_cart )
+					@php
+					$images = $add_cart['attributes'][0];
+					$images = explode('|',$images);
+					$images = $images[0];
+					@endphp
+					<ul class="products-cart">
+						<li class="pr-cart-item">
+							<div class="product-image">
+								<figure><img src="{{asset($images)}}" alt="" width="100px" height="100px"></figure>
+							</div>
+							<div class="product-name">
+								<a class="link-to-product" href="#">{{ $add_cart['name'] }}</a>
+							</div>
+							<div class="price-field produtc-price"><p class="price">${{ $add_cart['price'] }}</p></div>							
+									<div class="input-number" style="width: 20%; margin-top: 30px;">
+										<input type="number" name="quantity" value="{{ $add_cart['quantity'] }}">
+										<span class="qty-up">+</span>
+										<span class="qty-down">-</span>
+									</div>
+							<div class="delete">
+								<a href="{{ url('/delete-cart/'.$add_cart['id']) }}" class="btn btn-delete" title="">
+									<span>Delete from your cart</span>
+									<i class="fa fa-times-circle" aria-hidden="true"></i>
+								</a>
+							</div>
+						</li>			
+					</ul>
+					@endforeach
+					@else
+                    <p>No item in cart</p>
+                @endif
+				</div>
+
+				<div class="summary">
+					<div class="order-summary">
+						<h4 class="title-box">Order Summary</h4>
+						<p class="summary-info"><span class="title">Subtotal</span><b class="index">${{Cart::getTotal()}}</b></p>
+						<p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
+						<p class="summary-info total-info "><span class="title">Total</span><b class="index">${{Cart::getTotal()}}</b></p>
+					</div>
+						<a class="btn btn-checkout" style="font-weight: bold;color: #D10024;text-align: right;" href="{{route('checkout.index')}}">Check out</a>
+						<a class="btn btn-checkout" style="font-weight: bold;color: #D10024;text-align: right;" href="{{ route('allproducts.index')}}">Continue Shopping<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+				</div>
+            </div>
+		</div>
+    @endsection
