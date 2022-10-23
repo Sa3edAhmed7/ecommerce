@@ -13,7 +13,6 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Orders Details Page</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -88,8 +87,8 @@
                   </div>
             </div>
         </div><!-- /.card -->
-    </div>
 
+<div class="row" id="print">
     <div class="col-lg-12">
         <div class="card card-danger card-outline">
             <div class="card-body">
@@ -136,14 +135,14 @@
                             <h2 class="py-5 text-center text-bold" style="color:#ff2832;">Total : <span>${{ $order['total_price'] }}</span></h2>
                           <!-- /.card-body -->
                           <!-- Main Footer -->
-  <footer class="main-footer py-5 text-center">
-  <a href="{{ route('index') }}">
-      <img src="{{asset($setting->logo)}}" alt="AdminLTE Logo" class="brand-image img-circle"><br>
-    </a>
-    <br>
-      <!-- Default to the left -->
-    <strong>Copyright &copy; 2022 <a class="text-danger" href="{{ route('index') }}">Store</a>.</strong> All rights reserved.
-  </footer>
+                      <footer class="main-footer py-5 text-center">
+                      <a href="{{ route('index') }}">
+                          <img src="{{asset($setting->logo)}}" alt="AdminLTE Logo" class="brand-image img-circle"><br>
+                        </a>
+                        <br>
+                          <!-- Default to the left -->
+                        <strong>Copyright &copy; 2022 <a class="text-danger" href="{{ route('index') }}">Store</a>.</strong> All rights reserved.
+                      </footer>
   
                         <!-- /.card -->
                       </div>
@@ -157,6 +156,8 @@
 </div>
 </div>
 </div>
+
+
 @endsection
 <script type="text/javascript">
               var hidden = false;

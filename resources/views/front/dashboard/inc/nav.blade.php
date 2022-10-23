@@ -8,6 +8,10 @@
         <a href="{{ route('index') }}" class="nav-link"><i class="fa fa-desktop nav-icon"></i> Home</a>
       </li>
     </ul>
+    <div class="mx-auto">
+  <a href="{{ route('index') }}">
+      <img src="{{asset($setting->logo)}}" alt="AdminLTE Logo" class="brand-image img-circle"><br>
+    </a></div>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">

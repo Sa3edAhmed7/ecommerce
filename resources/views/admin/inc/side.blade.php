@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-light-danger elevation-4">
+<aside class="main-sidebar sidebar-light-danger">
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
