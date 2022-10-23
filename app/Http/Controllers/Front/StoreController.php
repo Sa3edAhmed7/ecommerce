@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Product;
 use App\Models\Page;
+use App\Models\Product;
+use App\Models\Category;
 use App\Models\ColorProduct;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
@@ -20,8 +21,9 @@ class StoreController extends Controller
     {
         $products = Product::paginate(pagination_count);
         $category = Category::all();
+        $colors = ColorProduct::where('product_id',Auth::id())->get();
         $pages = Page::all();
-        return view('front.store',compact('products','category','pages'));
+        return view('front.store',compact('products','category','pages','colors'));
     }
 
     /**

@@ -11,7 +11,7 @@
 						<ul class="breadcrumb-tree">
 							<li><a href="{{ route('index')}}">Home</a></li>
 							<li><a href="#">All Categories</a></li>
-							<li><a href="#">{{$product->category->name }}</a></li>
+							<li><a>{{$product->category->name }}</a></li>
 							<li class="active">{{$product['name'] }}</li>
 						</ul>
 					</div>

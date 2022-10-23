@@ -79,15 +79,34 @@
 											<button><a href="/productdetail/{{ $product['id'] }}" data-lightbox="project" class="quick-view"><i class="fa fa-eye"></i></a></button>
 											
 										</div>
+										<form action="{{url('add-to-cart')}}" method="POST" enctype="multipart/form-data">
+                        			@csrf
+									<div class="input-number" style="width: 30%; margin-left: 80px;">
+										<input type="number" name="quantity" value="1">
+										<span class="qty-up">+</span>
+										<span class="qty-down">-</span>
+									</div>	
 									</div>
+									
 									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-									</div>
+							<input type="hidden" name="offer" value="{{$product->offer}}">
+							<input type="hidden" name="user_id" value= "{{ Auth::id() }}">
+							<input type="hidden" name="price" value="{{$product->price}}">
+							<input type="hidden" name="product_id" value="{{$product->id}}">
+							@foreach ($colors as $color)<input type="hidden" name="color_id" value="{{$color->product_id}}">@endforeach
+							<input type="hidden" name="id" value="{{$product->id}}">
+							<button class="add-to-cart-btn" type="submit"><i class="fa fa-shopping-cart"></i> add to cart</button>
 								</div>
+								</form>
 							</div>
+							
+								</div>
+								
+
+							
 							<!-- /product -->
-							@endforeach
-						</div>
+						@endforeach
+						</div>	
 						<!-- /store products -->
 
 						<!-- store bottom filter -->
